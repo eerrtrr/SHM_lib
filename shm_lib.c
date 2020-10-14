@@ -25,7 +25,7 @@ void shm_push(char* str, shm* mem){
 
 
 
-shm* shm_createSHM(size_t length){
+shm* shm_create(size_t length){
 	shm* mem = malloc(sizeof(shm));
 	mem->shm_id = shmget(IPC_PRIVATE, length, IPC_CREAT | IPC_EXCL | S_IRUSR | S_IWUSR);
 	mem->text_length = length;
@@ -34,7 +34,7 @@ shm* shm_createSHM(size_t length){
 	return mem;
 }
 
-shm* shm_openSHM(int id, size_t length){
+shm* shm_open(int id, size_t length){
 	shm* mem = malloc(sizeof(shm));
 	mem->shm_id = id;
 	mem->text_length = length;
@@ -45,13 +45,13 @@ shm* shm_openSHM(int id, size_t length){
 
 
 
-void shm_closeSHM(shm* mem){
+void shm_close(shm* mem){
 	shmdt(mem->shared_memory);
 	free(mem->shared_memory);
 	free(mem);
 }
 
-void shm_deleteSHM(shm* mem){
+void shm_delete(shm* mem){
 	shmctl(mem->shm_id, IPC_RMID,0);
 	shmdt(mem->shared_memory);
 	free(mem);
@@ -59,7 +59,7 @@ void shm_deleteSHM(shm* mem){
 
 
 
-int shm_getSHMid(shm* mem){
+int shm_getId(shm* mem){
 	return mem->shm_id;
 }
 
