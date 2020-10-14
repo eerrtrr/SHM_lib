@@ -29,12 +29,12 @@ void shm_printData(shm* mem);
 
 void shm_push(char* str, shm* mem);
 
-shm* shm_createSHM(size_t length);
-shm* shm_openSHM(int id, size_t length);
+shm* shm_create(size_t length);
+shm* shm_open(int id, size_t length);
 
-void shm_closeSHM(shm* mem);
-void shm_deleteSHM(shm* mem);
+void shm_close(shm* mem);
+void shm_delete(shm* mem);
 
-int shm_getSHMid(shm* mem);
+int shm_getId(shm* mem);
 
 void clean_buffer();
